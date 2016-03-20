@@ -5,8 +5,8 @@ class Model():
     """
 
     dimension = None
-    dynamic = None
     dynamicType = None
+    populateType = None
     matrix = None
     size = None
 
@@ -21,22 +21,23 @@ class Model():
     def getAceitableDimension():
         return aceitableDimension
 
-    def run(self, dimension = 1, size, dynamic = 'vote', populate = 'random'):
+    def run(self, dimension = 1, size = 1000, dynamic = 'vote', populate = 'random'):
         self.dimension = dimension
         self.size = size
         self.dynamicType = dynamic
+        self.populateType = populate
         self.prepearMatrix()
         self.runDynamics()
 
     def prepearMatrix(self):
-        if(populate == 'random'):
+        if self.populateType == 'random':
             from populate.random import Random
             populate = Random()
 
         self.matrix = populate.run(self)
 
     def runDynamics(self):
-        if(self.dynamicType == 'vote'):
+        if self.dynamicType == 'vote' :
             from dynamics.vote.vote import Vote
             dynamic = Vote()
 

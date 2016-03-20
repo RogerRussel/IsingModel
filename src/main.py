@@ -12,3 +12,5 @@ dimension = 1
 
 m = Model()
 m.run(dimension, size)
+
+print("finished")
