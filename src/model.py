@@ -1,6 +1,3 @@
-from populate.random import Random
-from dynamics.vote.vote import Vote
-
 class Model():
     """
     Model Ising runner
@@ -11,6 +8,7 @@ class Model():
     dynamic = None
     dynamicType = None
     matrix = None
+    size = None
 
     aceitableSize = 1000, 1000000000000
     aceitableDimension = 1, 3
@@ -23,20 +21,23 @@ class Model():
     def getAceitableDimension():
         return aceitableDimension
 
-    def run(self, dimension = 1, dynamic = 'vote'):
-        self.dimension = 1
+    def run(self, dimension = 1, size, dynamic = 'vote', populate = 'random'):
+        self.dimension = dimension
+        self.size = size
         self.dynamicType = dynamic
         self.prepearMatrix()
         self.runDynamics()
 
-    def runDynamics(self):
-        self.dynamic = Vote()
-        self.dynamic.run(self)
-
     def prepearMatrix(self):
-        if self.dimension == 1:
-            pass
-        elif self.dimension == 2:
-            pass
-        elif self.dimensin == 3:
-            pass
+        if(populate == 'random'):
+            from populate.random import Random
+            populate = Random()
+
+        self.matrix = populate.run(self)
+
+    def runDynamics(self):
+        if(self.dynamicType == 'vote'):
+            from dynamics.vote.vote import Vote
+            dynamic = Vote()
+
+        dynamic.run(self)
