@@ -7,10 +7,10 @@ class Output():
     """
     time = [0,0]
 
-    module = None
+    model = None
 
-    def __init__(self, module):
-        self.module = module
+    def __init__(self, model):
+        self.model = model
 
     def start(self):
         self.time[0] = process_time()
@@ -22,19 +22,19 @@ class Output():
 
     def running(self, maxSize, current ):
         percent = int((100 * current)/maxSize)
-        stdout.write("\r\tRunning: " + str(percent) + "%")
-        stdout.flush()        
+        stdout.write("\r\tRunning iterate " + str(self.model.currentIterate) + ": " + str(percent) + "%")
+        stdout.flush()
 
     def runningEnd(self):
-        stdout.write("\r\tRunning: 100%\n")
+        stdout.write("\r\tRunning iterate " + str(self.model.currentIterate) + ": 100%\n")
         stdout.flush()
 
     def normalizeName(self, sufix):
         name = 'output/'
-        name += self.module.dynamicType
-        name += '.d-' + str(self.module.dimension)
-        name += '.s-' + str(self.module.size)
-        name += '.t-' + str(process_time())
-        name += sufix
+        name += self.model.dynamicType
+        name += '.d-' + str(self.model.dimension)
+        name += '.s-' + str(self.model.size)
+        name += '.t-' + str(self.model.currentIterate)
+        name += '.' + sufix
 
         return name

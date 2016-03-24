@@ -11,8 +11,10 @@ from interface import Interface
 
 size = 100
 dimension = 2
+populate = 'circle'
+dynamic = 'none'
 
 m = Model()
-m.run(dimension, size)
+m.run(dimension, size, populate = populate, iterate = 1000)
 
 print("finished")

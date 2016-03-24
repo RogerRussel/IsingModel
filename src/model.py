@@ -11,6 +11,8 @@ class Model():
     output = None
     matrix = None
     size = None
+    iterate = 1
+    currentIterate = 0
 
     time = []
 
@@ -25,7 +27,7 @@ class Model():
     def getAceitableDimension():
         return aceitableDimension
 
-    def run(self, dimension = 1, size = 1000, dynamic = 'vote', populate = 'random', output = 'ascii'):
+    def run(self, dimension = 1, size = 1000, dynamic = 'vote', populate = 'random', output = 'ascii' , iterate = 1):
 
 
         self.dimension = dimension
@@ -33,6 +35,7 @@ class Model():
         self.dynamicType = dynamic
         self.populateType = populate
         self.outputType = output
+        self.iterate = iterate
         self.initOutput()
         self.output.start()
         self.prepearMatrix()
@@ -56,6 +59,9 @@ class Model():
         if self.populateType == 'random':
             from populate.random import Random
             populate = Random()
+        elif self.populateType == 'circle':
+            from populate.circle import Circle
+            populate = Circle()
 
         populate.run(self)
 
@@ -63,5 +69,10 @@ class Model():
         if self.dynamicType == 'vote' :
             from dynamics.vote.vote import Vote
             dynamic = Vote()
+        elif self.dynamicType == 'none':
+            from dynamics.none.none import none
+            dynamic = none()
 
-        dynamic.run(self)
+        for i in range(self.iterate):
+            self.currentIterate += 1
+            dynamic.run(self)
