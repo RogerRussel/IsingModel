@@ -26,15 +26,19 @@ class Model():
         return aceitableDimension
 
     def run(self, dimension = 1, size = 1000, dynamic = 'vote', populate = 'random', output = 'ascii'):
+
+
         self.dimension = dimension
         self.size = size
         self.dynamicType = dynamic
         self.populateType = populate
         self.outputType = output
         self.initOutput()
+        self.output.start()
         self.prepearMatrix()
         self.output.drawMatrix()
         self.runDynamics()
+        self.output.end()
 
     def initOutput(self):
 

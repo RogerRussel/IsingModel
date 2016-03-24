@@ -1,4 +1,5 @@
 from time import process_time
+from sys import stdout
 
 class Output():
     """
@@ -19,11 +20,20 @@ class Output():
         self.time[1] = process_time()
         print('\n\tfinished at: ',self.time[1],'\n')
 
+    def running(self, maxSize, current ):
+        percent = int((100 * current)/maxSize)
+        stdout.write("\r\tRunning: " + str(percent) + "%")
+        stdout.flush()        
+
+    def runningEnd(self):
+        stdout.write("\r\tRunning: 100%\n")
+        stdout.flush()
+
     def normalizeName(self, sufix):
         name = 'output/'
         name += self.module.dynamicType
-        name += '.d-' + self.module.dimension
-        name += '.s-' + self.module.size
+        name += '.d-' + str(self.module.dimension)
+        name += '.s-' + str(self.module.size)
         name += '.t-' + str(process_time())
         name += sufix
 
