@@ -52,7 +52,7 @@ class Model():
             from output.image.image import Image
             self.output = Image(self)
         elif self.outputType == 'video':
-            from output.video.video import video
+            from output.video.video import Video
             self.output = Video(self)
 
     def prepearMatrix(self):

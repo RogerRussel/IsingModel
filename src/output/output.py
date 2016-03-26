@@ -34,7 +34,23 @@ class Output():
         name += self.model.dynamicType
         name += '.d-' + str(self.model.dimension)
         name += '.s-' + str(self.model.size)
-        name += '.t-' + str(self.model.currentIterate)
+        name += '.i-' + self.getIterationNoramlized()
         name += '.' + sufix
 
         return name
+
+    def drawMatrix(self):
+        if self.model.dimension == 1:
+            self.runUniDimension()
+        elif self.model.dimension == 2:
+            self.runBiDimension()
+        elif self.model.dimension == 3:
+            self.runTriDimension()
+
+    def getIterationNoramlized(self):
+
+        ci = str(self.model.currentIterate)
+
+        n = len(str(self.model.iterate))
+
+        return ci.zfill(n)

@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 
 print("initializing Ising Model")
 
@@ -13,8 +13,10 @@ size = 100
 dimension = 2
 populate = 'circle'
 dynamic = 'none'
+output = 'video'
+iterate = 10
 
 m = Model()
-m.run(dimension, size, populate = populate, iterate = 1000)
+m.run(dimension, size, populate = populate, iterate = iterate, output = output)
 
 print("finished")
