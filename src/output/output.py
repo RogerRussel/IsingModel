@@ -18,6 +18,7 @@ class Output():
 
     def end(self):
         self.time[1] = process_time()
+        self.endOutput()
         print('\n\tfinished at: ',self.time[1],'\n')
 
     def running(self, maxSize, current ):
@@ -54,3 +55,6 @@ class Output():
         n = len(str(self.model.iterate))
 
         return ci.zfill(n)
+
+    def endOutput(self):
+        pass

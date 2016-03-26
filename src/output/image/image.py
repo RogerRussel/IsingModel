@@ -7,7 +7,7 @@ class Image(Output):
     """
 
     sufix = 'png'
-    mode = '1' # L is for grayscale
+    mode = '1' # Black and White
 
     imgSize = None
     defaultColor = 'White'
